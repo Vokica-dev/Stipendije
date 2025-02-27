@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Početna - Škola</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="hamburger-menu" id="hamburger-menu">
+                &#9776; 
+            </div>
+            <ul id="nav-links" class="hidden">
+                <li><a href="#">Početna</a></li>
+                <li><a href="#">O nama</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><a href="uvod.html">Prijava</a></li>
+                <li><a href="registracija.html">Registracija</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <h1>Dobrodošli na naš sajt za stipendije!</h1>
+            <p>Ovo je početna stranica naše školske stipendijske stranice. Ovde možete pronaći sve potrebne informacije.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Naša Škola. Sva prava zadržana.</p>
+    </footer>
+
+   
+    <script>
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('hidden');
+            navLinks.classList.toggle('show'); 
+        });
+    </script>
+</body>
+</html>
