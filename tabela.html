@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stipendije - Tabela</title>
+    <link rel="stylesheet" href="editovanje4.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="hamburger-menu" id="hamburger-menu">&#9776;</div>
+            <ul id="nav-links" class="hidden">
+              <a href="start.html" id="go-home">Početna</a></li>
+                <li><a href="#">  <li>O nama</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="table-section">
+            <h2>Pregled stipendija</h2>
+            <table id="students-table">
+                <tr>
+                    <th>R. br.</th>
+                    <th>Ime i prezime kandidata</th>
+                    <th>Škola</th>
+                    <th>Prosek ocena</th>
+                </tr>
+                <!-- Tabela učenika će se dodavati preko JavaScript-a -->
+            </table>
+            <div id="pagination">
+                <button id="prev" onclick="changePage(-1)">Prethodna</button>
+                <button id="next" onclick="changePage(1)">Sledeća</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Naša Škola. Sva prava zadržana.</p>
+    </footer>
+
+    <script>
+        // Funkcija za otvaranje/zatvaranje menija
+        document.getElementById("hamburger-menu").addEventListener("click", function() {
+            const navLinks = document.getElementById("nav-links");
+            navLinks.classList.toggle("show");
+        });
+
+        // Podaci o studentima
+        const students = [
+            { name: "Nađa Stojanović", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Vanja Lukić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Krsman Luka Kršić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Jovan Balać", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Filip Turajlić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Danica Marković", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Maša Rajić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Vuk Kovićenić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Teodora Jočić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Lena Jočić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Emilija Živković", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Jovana Dešić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Maša Mutić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Teodora Pokrajac", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Sofija Zuber", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Stoјanka Lončar", school: "Tehnička škola sa domom učenika Apatin", average: "5.00" },
+            { name: "Ivona Kovačević", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Milica Mirić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Anđela Celić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Nevena Vignjević", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Sara Butković", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Petar Pavić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Ana Novak", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Nikola Kovačić", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            { name: "Maja Petrović", school: "Gimnazija i stručna škola \"Nikola Tesla\"", average: "5.00" },
+            // Dodaj sve ostale učenike ovde...
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function renderTable() {
+            const startIndex = (currentPage - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
+            const currentPageStudents = students.slice(startIndex, endIndex);
+
+            const table = document.getElementById('students-table');
+            // Clear existing rows
+            table.innerHTML = `  
+                <tr>
+                    <th>R. br.</th>
+                    <th>Ime i prezime kandidata</th>
+                    <th>Škola</th>
+                    <th>Prosek ocena</th>
+                </tr>
+            `;
+
+            // Add rows for current page
+            currentPageStudents.forEach((student, index) => {
+                const row = table.insertRow();
+                row.innerHTML = `  
+                    <td>${startIndex + index + 1}</td>
+                    <td>${student.name}</td>
+                    <td>${student.school}</td>
+                    <td>${student.average}</td>
+                `;
+            });
+
+            document.getElementById('prev').disabled = currentPage === 1;
+            document.getElementById('next').disabled = currentPage * rowsPerPage >= students.length;
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            renderTable();
+        }
+
+        renderTable();
+    </script>
+</body>
+</html>

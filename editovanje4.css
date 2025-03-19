@@ -8,7 +8,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f4f4f9;
+    background-color: #f4f4f9;
     color: #333;
     line-height: 1.6;
 }
@@ -26,8 +26,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease-in-out;
 }
 
 .hamburger-menu {
@@ -52,16 +50,10 @@ nav ul {
     transition: left 0.4s ease-in-out;
     padding: 15px 0;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.4s ease-in-out;
 }
 
 nav ul.show {
     left: 10px;
-    opacity: 1;
-    transform: translateX(0);
 }
 
 nav ul li {
@@ -83,29 +75,66 @@ nav ul li a:hover {
     transform: scale(1.05);
 }
 
-/* WELCOME SEKCIJA */
-.welcome-section {
-    padding: 140px 20px;
+/* TABELA */
+.table-section {
     text-align: center;
-    background: linear-gradient(135deg, #1a3d4c, #3498db);
-    color: white;
-    margin-bottom: 40px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 80px 20px;
     animation: fadeIn 1.5s ease-in-out;
 }
 
-.welcome-section h1 {
-    font-size: 50px;
-    margin-bottom: 20px;
-    animation: slideDown 1.5s ease-in-out;
+table {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 1.5s ease-in-out;
 }
 
-.welcome-section p {
-    font-size: 18px;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.8;
-    animation: slideUp 1.5s ease-in-out;
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #0078D4;
+    color: white;
+}
+
+tr:hover {
+    background: #f1f1f1;
+    transition: 0.3s;
+}
+
+/* Dugmad za navigaciju */
+#pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#pagination button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #2c3e50; /* Tamna nijansa koja se poklapa sa sajtom */
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#pagination button:hover {
+    background-color: #34495e; /* Svi hover efekti koriste svetliju tamnu nijansu */
+}
+
+#pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 /* FOOTER */
@@ -115,7 +144,6 @@ footer {
     text-align: center;
     padding: 20px 0;
     width: 100%;
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* ANIMACIJE */
@@ -124,12 +152,7 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
 }
